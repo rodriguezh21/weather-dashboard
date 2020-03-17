@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     }
     
-    let baseURL = "http://api.openweathermap.org"
+    let baseURL = "https://api.openweathermap.org"
     
     $('.search-button').on('click', () =>{
         $.ajax({
@@ -50,7 +50,7 @@ $(document).ready(function(){
 
         var lat = response.coord.lat;
         var lon = response.coord.lon;
-        var qURL = "http://api.openweathermap.org/data/2.5/uvi?appid=be01f05cecf15c5e9a29c3550532301c&lat="+lat+"&lon="+lon;
+        var qURL = "https://api.openweathermap.org/data/2.5/uvi?appid=be01f05cecf15c5e9a29c3550532301c&lat="+lat+"&lon="+lon;
         
         $.ajax({
             url: qURL,
