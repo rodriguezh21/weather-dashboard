@@ -58,7 +58,7 @@ $(document).ready(function(){
         }).then(function(res) {
             console.log("res: "+JSON.stringify(res));
             var h3 = $("<h3>");
-            console.log(res.value);
+            
             h3.text("UV Index: "+ res.value);
         $(".uv-index").append(h3);
         })
