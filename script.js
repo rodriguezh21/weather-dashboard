@@ -30,7 +30,7 @@ $(document).ready(function(){
         $("#city-input").val("");
         // first letter of the city is in uppercase
         var capCity = city.substring(0,1).toUpperCase()+ city.substring(1).toLowerCase();
-        cities.push('Recent Searches  '+capCity);
+        cities.push(capCity);
         
         for(var i=0;i<cities.length;i++){
             var h4 = $("<h4>");
