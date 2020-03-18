@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 .title{
     background-color: #333;
@@ -14,17 +15,45 @@ body {
 }
 .search-button {
     color: white;
+    font-size: 18px;
+    margin: 5px;
+}
+.control {
+    margin: 5px;
+}
+.input {
+    padding: 5px;
+    font-size: 18px;
 }
 .button {
-    background-color: dodgerblue;
-    border: lightblue 3px solid;
+    background-color: rgb(20, 125, 230);
+    
     color: white;
+    padding: 5px;
     
 }
 .button:hover {
     cursor: pointer;
+    background-color: rgb(5, 89, 172);
 }
+.btn {
+    margin: 5px;
+}
+
 #c {
     color: black;
     font-size: 16px;
+}
+#city-info {
+    padding: 20px;
+    border: 1px solid black;
+    
+}
+.city-name h1 {
+    text-align: center;
+}
+#forecast-col {
+    background-color: cadetblue;
+    margin: 20px;
+    font-size: 10px;
 }

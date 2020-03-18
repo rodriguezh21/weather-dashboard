@@ -24,32 +24,44 @@
           <div class="col">
             <div class="field has-addons">
               <div class="control">
-                <input class="input" id="city-input" type="text" placeholder="Search by City or Zip Code">
+                <input class="input" id="city-input" type="text" placeholder="Search by City">
               </div>
               <div class="search-button">
                 <a class="button is-info">
                   Search
                 </a>
-                <div id="c"></div>
+                
+                
           </div>
         </div>
       </div>
-          <div class="col">
+          <div class="col" id="city-info">
             <div class="city-name">
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col">
-            
-            <ul>
+          <div class="col-6">
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Recent
+              </a>
+              
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                <div id="c"></div>
+              </div>
+            </div>
+          </div>
+          </div>
 
-            </ul>
+
+            <div class="row forecast" id="forecast">
+              5-Day Forecast 
+
           </div>
-          <div class="col">
-            Forecast
-          </div>
-          </div>
+          
       </div>
     </div>
     
