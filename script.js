@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     
 
-    // click again
+    // click again function
     
     
 
@@ -43,23 +43,24 @@ $(document).ready(function(){
             //     // loops 5 day forecast
 
 
-            var celsius = Math.ceil(cast.list[0].main.temp - 273)
-            var fahrenheit = Math.ceil(celsius * 1.8 + 32)
-
-                for(var i=0;i<cast.list.length;i+=8){
+            
+            for(var i=0;i<cast.list.length;i+=8){
+                var celsius = Math.ceil(cast.list[i].main.temp - 273)
+                
+                var fahrenheit = Math.ceil(celsius * 1.8 + 32)
 
                     let fBlock = `
                     <div class='col-md-2 col-sm-12'>
                     <div class='columns'>
-                    <img src="https://openweathermap.org/img/wn/${cast.list[0].weather[0].icon}.png"/>
+                    <img src="https://openweathermap.org/img/wn/${cast.list[i].weather[0].icon}.png"/>
                     <h4>${ cast.list[i].dt_txt }<h4>
                     <h5>Temp: ${ celsius+'°C / '+fahrenheit+ '°F' }</h5>
                     <h5>Humidity: ${ cast.list[i].main.humidity +'%' }</h5></div></div>
                     `;
                     $(".forecast").append(fBlock);
+                }
                 
-            }
-            
+                
             
             })
         })
