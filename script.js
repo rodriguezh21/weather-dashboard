@@ -45,6 +45,7 @@ $(document).ready(function(){
 
             
             for(var i=0;i<cast.list.length;i+=8){
+                
                 var celsius = Math.ceil(cast.list[i].main.temp - 273)
                 
                 var fahrenheit = Math.ceil(celsius * 1.8 + 32)
@@ -116,12 +117,21 @@ $(document).ready(function(){
             url: qURL,
             method: 'GET',
         }).then(function(res) {
-        
-            var h4 = $("<h4>");
             
-            h4.text("UV Index: "+ res.value);
-        $(".city-name").append(h4);
-
+            var uvIndex = res.value;
+            var background = "bg-secondary";
+            if (uvIndex <= 2.99) {
+            background = "bg-success";
+            } else if (uvIndex >= 3 && uvIndex <= 7.99) {
+            background = "bg-warning";
+            } else if (uvIndex >= 8){
+            background = "bg-danger";
+        }
+            
+            $(".city-name").append(
+            `<p>UV Index: <span class="rounded p-1 ${background}">${uvIndex}</span></p>`
+          );
+        
             
         })
         
