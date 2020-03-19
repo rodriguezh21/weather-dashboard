@@ -1,59 +1,75 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    height: 800px;
+    background-color: lightblue;
+    background-image: linear-gradient( rgb(32, 32, 59), rgb(179, 65, 45));
     
 }
 .title{
-    background-color: #333;
+    /* background-color: rgb(1, 1, 110); */
     color: white;
     text-align: center;
     font-size: 40px;
 }
 .subtitle {
     text-align: center;
-    background-color: tomato;
+    /* background-color: rgb(0, 0, 90); */
     color: white;
 }
 .search-button {
     color: white;
     font-size: 18px;
     margin: 5px;
+    
 }
 .control {
     margin: 5px;
+    
 }
 .input {
-    padding: 5px;
+    padding: 0px;
     font-size: 18px;
+    background-color: rgba(51, 51, 85, 0.027);
+    color: white;
+    border: 1px solid rgb(102, 37, 25);
 }
-.button {
-    background-color: rgb(20, 125, 230);
-    
+.button, .btn {
+    background-color: rgb(32, 32, 59);
     color: white;
     padding: 5px;
+    border-radius: 5px;
+    border: 2px solid rgb(32, 32, 59);
     
 }
-.button:hover {
+.button:hover, .btn:hover {
     cursor: pointer;
-    background-color: rgb(5, 89, 172);
+    background-color: rgb(50, 50, 94);
 }
-.btn {
-    margin: 5px;
+.card-body {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
 }
 
 #c {
-    color: black;
+    color: white;
     font-size: 16px;
 }
 #city-info {
     padding: 20px;
-    border: 1px solid black;
+    border-radius: 25px;
+    border: 2px solid rgb(102, 37, 25);
+    color: white;
+    
     
 }
 .city-name h1 {
     text-align: center;
 }
-#forecast-col {
-    background-color: cadetblue;
-    margin: 20px;
+.columns {
+    background-color: rgb(20, 125, 230);
+    color: white;
+    margin: 3px;
     font-size: 10px;
+    padding: 15px;
+   
 }

@@ -7,49 +7,58 @@ $(document).ready(function(){
         APPID: "be01f05cecf15c5e9a29c3550532301c",
 
     }
+
+    
+
     // click again
     
     
 
-    let baseURL = "https://api.openweathermap.org"
     // intro
     var intro = $("<h1>");
     intro.text("Your Daily Forecast!");
     $('.city-name').append(intro)
-
+    
     $('.search-button').on('click', () =>{
-
+        
+        let baseURL = "https://api.openweathermap.org"
         var city = $('#city-input').val();
         $.ajax({
             url: `${ baseURL }/data/2.5/weather?q=${city}&${ $.param(options)}`,
             method: 'GET',
         }).then(response => {
             getWeather(response);
-            // forecast call
-            var fUrl = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=4c6a14a8cf91420981cacdcc4a6442b4`;
+            // forecast call 
+            var fUrl = "https://api.openweathermap.org"
             
             $.ajax({
-                url: fUrl,
+                url: `${fUrl}/data/2.5/forecast/?q=${city}&${ $.param(options)}`,
                 method: 'GET',
             }).then(function(cast) {
                 console.log((cast));
                 $(".forecast").empty();
 
-                // loops 5 days
-                for(let i=0;i<5;i++){
+            //     // loops 5 days
+                for(var i=0;i<120;i+=24){
+                
                 let fBlock = `
-                <div class='col-md-2 col-sm-6 col-xs-12'>
-                <h4>${ cast.data[i].valid_date }</h4>
+                <div class='col-md-2 col-sm-6 col-sm-12'>
+                <div class='columns'>
+                <h4>${ cast.list[i].dt_txt }</h4><br>
                 <i class= ${cast.data[i].weather.icon}> </i>
-                <h5>Temp: ${ cast.data[i].temp+ '°F' }</h5>
-                <h5>Humidity: ${ cast.data[i].rh +'%' }</h5></div>`;
+                <h5>Temp: ${ cast.list[i].main.temp+ '°F' }</h5>
+                <h5>Humidity: ${ cast.data[i].rh +'%' }</h5></div></div>`;
                 
                 $('.forecast').append(fBlock)
-                }
-
+            }
+            
+            // <img src="http://openweathermap.org/img/wn/${cast.weather[0].icon}.png"/>
             })
         })
-    })
+        })
+       
+
+    // })
     function getWeather(response) {
         var date = moment().format('L');
         $("#c").empty();
@@ -68,18 +77,24 @@ $(document).ready(function(){
         
         // loops the recently searched cities
         for(var i=0;i<cities.length;i++){
-            var h4 = $("<h4>");
-            h4.text(cities[i]);
-            $("#c").append(h4);
+            var h5 = $("<h5>");
+            var hr = $("<hr>");
+            h5.text(cities[i]);
+            
+            $("#c").append(h5);
+            $("#c").append(hr);
         }
+        
+
         // block for today's weather
         let block = `
-        <h2>${capCity} <span> ${date} </span></h2>
-        <h4>Temperature: ${ celsius +'°C / '+ fahrenheit + '°F' }</h4>
-        <h4>Humidity: ${ response.main.humidity +'%' }</h4>
-        <h4>Wind Speed: ${ response.wind.speed +'MPH' }</h4>
+        <h2>${capCity} ${date}<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}.png"/></h2>
+        
+        <h5>Temperature: ${ celsius +'°C / '+ fahrenheit + '°F' }</h5>
+        <h5>Humidity: ${ response.main.humidity +'%' }</h5>
+        <h5>Wind Speed: ${ response.wind.speed +'MPH' }</h5>
         `
-
+        
         $('.city-name').html(block)
         console.log(response);
 
@@ -92,11 +107,13 @@ $(document).ready(function(){
             url: qURL,
             method: 'GET',
         }).then(function(res) {
-            console.log("res: "+JSON.stringify(res));
+        
             var h4 = $("<h4>");
             
             h4.text("UV Index: "+ res.value);
         $(".city-name").append(h4);
+
+            
         })
         
             
