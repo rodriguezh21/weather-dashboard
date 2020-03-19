@@ -118,6 +118,8 @@ $(document).ready(function(){
             method: 'GET',
         }).then(function(res) {
             
+            // garrett gassensmith helped me with the uvindex colors
+
             var uvIndex = res.value;
             var background = "bg-secondary";
             if (uvIndex <= 2.99) {
