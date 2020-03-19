@@ -28,40 +28,48 @@ $(document).ready(function(){
             method: 'GET',
         }).then(response => {
             getWeather(response);
+            
             // forecast call 
+
             var fUrl = "https://api.openweathermap.org"
             
             $.ajax({
                 url: `${fUrl}/data/2.5/forecast/?q=${city}&${ $.param(options)}`,
                 method: 'GET',
             }).then(function(cast) {
-                console.log((cast));
+                console.log(cast)
                 $(".forecast").empty();
 
-            //     // loops 5 days
-                for(var i=0;i<120;i+=24){
+            //     // loops 5 day forecast
+
+
+            var celsius = Math.ceil(cast.list[0].main.temp - 273)
+            var fahrenheit = Math.ceil(celsius * 1.8 + 32)
+
+                for(var i=0;i<cast.list.length;i+=8){
+
+                    let fBlock = `
+                    <div class='col-md-2 col-sm-12'>
+                    <div class='columns'>
+                    <img src="https://openweathermap.org/img/wn/${cast.list[0].weather[0].icon}.png"/>
+                    <h4>${ cast.list[i].dt_txt }<h4>
+                    <h5>Temp: ${ celsius+'°C / '+fahrenheit+ '°F' }</h5>
+                    <h5>Humidity: ${ cast.list[i].main.humidity +'%' }</h5></div></div>
+                    `;
+                    $(".forecast").append(fBlock);
                 
-                let fBlock = `
-                <div class='col-md-2 col-sm-6 col-sm-12'>
-                <div class='columns'>
-                <h4>${ cast.list[i].dt_txt }</h4><br>
-                <i class= ${cast.data[i].weather.icon}> </i>
-                <h5>Temp: ${ cast.list[i].main.temp+ '°F' }</h5>
-                <h5>Humidity: ${ cast.data[i].rh +'%' }</h5></div></div>`;
-                
-                $('.forecast').append(fBlock)
             }
             
-            // <img src="http://openweathermap.org/img/wn/${cast.weather[0].icon}.png"/>
+            
             })
         })
         })
        
 
-    // })
-    function getWeather(response) {
-        var date = moment().format('L');
-        $("#c").empty();
+    
+        function getWeather(response) {
+            var date = moment().format('L');
+            $("#c").empty();
         
         // converts kelvin to celsius
         var celsius = Math.ceil(response.main.temp - 273)
